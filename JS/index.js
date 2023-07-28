@@ -223,7 +223,7 @@ function setSessionStorageWithExpiry() {
   // as well as the time when it's supposed to expire
   const item = {
     value: "Authenticated",
-    expiry: now.getTime() + 900,
+    expiry: now.getTime() + 900000,
   };
   sessionStorage.setItem("AuthenticationState", JSON.stringify(item));
 }
