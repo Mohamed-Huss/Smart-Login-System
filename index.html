@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./CSS/all.min.css">
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="./CSS/style.CSS">
+</head>
+
+<body>
+    <Section class="main w-100 min-vh-100" id="login">
+        <div class="container text-center py-5">
+            <div class="login-form d-flex flex-column justify-content-center w-75 m-auto p-5 gy-4" >
+                <h1>Smart Login System</h1>
+                <input type="email" class="form-control my-3" id="signInEmail" placeholder="Enter your email">
+                <input type="Password" class="form-control mb-3" id="signInPassword" placeholder="Enter your password">
+                <p id="incorrectInput"  ></p>
+                <button id="submitBtn" type="submit" class="btn btn-outline-info my-3" onclick="login()">Login</button>
+                <p class="text-white">Don't have an account? <a class="text-white text-decoration-none signin-signup" href="./signup.html">Sign Up</a></p>
+
+            </div>
+
+
+        </div>
+
+
+
+    </Section>
+
+
+
+
+
+    <script src="./JS/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+/* Start General Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Titillium Web', sans-serif;
+}
+/* End General Style */
+
+
+
+
+.main , .login-form{
+  background-color:#24353f ;
+}
+
+
+.login-form{
+box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+
+h1{
+color:#17a2b8;
+}
+
+
+/* Start Input Styling */
+input, textarea {
+  background-color: transparent !important;
+  color: #fff !important;
+  
+}
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 0 transparent !important;
+}
+input::placeholder{
+  color: rgb(182, 182, 182) !important;
+}
+/* End Input Styling */
+
+.signin-signup:hover{
+  text-decoration: underline !important;
+}
+
+.Logout-btn {
+  --bs-btn-color: #fff;
+  color:rgb(182, 182, 182)  ;
+  --bs-btn-hover-color: #fff;
+}
+
+
+/* Start Home Navbar */
+
+.bg-body-tertiary {
+  background-color:#24353f !important;
+}
+
+.navbar-brand {
+  color:#fff ;
+  --bs-navbar-brand-hover-color:#fff;
+}
+
+.navbar{
+  box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+/* End Home Navbar */

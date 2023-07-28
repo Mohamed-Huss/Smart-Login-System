@@ -1,0 +1,51 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./CSS/all.min.css">
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="./CSS/style.CSS">
+</head>
+
+<body>
+    <Section class="main w-100 min-vh-100 position-relative" id="home">
+        <nav class="navbar navbar-expand-lg position-fixed start-0 top-0 end-0 buttom-0 bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="#">SMART LOGIN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning logout-btn" aria-current="page"
+                                href="./index.html" onclick="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container h-100 text-center d-flex flex-column justify-content-center">
+            <div class="login-form  m-auto p-5 w-75 " id="home">
+                <h1 class="username" id="userMessage"></h1>
+
+            </div>
+
+
+        </div>
+
+
+
+    </Section>
+
+
+
+
+
+    <script src="./JS/index.js"></script>
+</body>
+
+</html>
