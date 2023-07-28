@@ -48,7 +48,7 @@ input::placeholder{
 }
 
 .Logout-btn {
-
+  display:block;
   --bs-btn-color: #fff;
   color:rgb(182, 182, 182)  ;
   --bs-btn-hover-color: #fff;
