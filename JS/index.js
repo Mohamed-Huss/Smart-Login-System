@@ -23,8 +23,8 @@ for (var i = 1; i < pathparts.length - 1; i++) {
 }
 // End URL fetching, Parsing and concatinating
 
-// console.log(window.location.href)
-// console.log("http://" + location.host + baseURL + "/home.html")
+console.log(window.location.href)
+console.log("http://" + location.host + baseURL + "/home.html")
 
 //Is the user authenticated?
 if (sessionStorage.getItem('AuthenticationState') === null && window.location.href == ("http://" + location.host + baseURL + "/home.html")) {
