@@ -32,7 +32,7 @@ window.open("index.html","_self")}
 else if (getFormSessionStorageExpiry("AuthenticationState") ==="Authenticated" && localStorage.getItem("userMessage")) {
   // Home Page Welcome Message Display
   document.getElementById("userMessage").innerHTML =
-"welcome " + localStorage.getItem("userMessage");}
+"Welcome " + localStorage.getItem("userMessage");}
 
 //Start Login Case Handling
 
