@@ -13,13 +13,12 @@ if (localStorage.getItem("userData")) {
   userData = [];
 }
 
-
 // Start URL fetching, Parsing and concatinating
 var pathparts = location.pathname.split("/");
 var baseURL = "";
 for (var i = 1; i < pathparts.length - 1; i++) {
   baseURL += "/" + pathparts[i];
-  console.log(baseURL)
+  console.log(baseURL);
 }
 // End URL fetching, Parsing and concatinating
 
@@ -27,12 +26,20 @@ for (var i = 1; i < pathparts.length - 1; i++) {
 // console.log(location.protocol + location.host + baseURL + "/home.html")
 
 //Is the user authenticated?
-if (getFormSessionStorageExpiry("AuthenticationState") === null && (location.protocol + location.host + location.pathname) == (location.protocol + location.host + baseURL + "/home.html")) {
-window.open("index.html","_self")}
-else if (getFormSessionStorageExpiry("AuthenticationState") ==="Authenticated" && localStorage.getItem("userMessage")) {
+if (
+  getFormSessionStorageExpiry("AuthenticationState") === null &&
+  location.protocol + location.host + location.pathname ==
+    location.protocol + location.host + baseURL + "/home.html"
+) {
+  window.open("index.html", "_self");
+} else if (
+  getFormSessionStorageExpiry("AuthenticationState") === "Authenticated" &&
+  localStorage.getItem("userMessage")
+) {
   // Home Page Welcome Message Display
   document.getElementById("userMessage").innerHTML =
-"Welcome " + localStorage.getItem("userMessage");}
+    "Welcome " + localStorage.getItem("userMessage");
+}
 
 //Start Login Case Handling
 
@@ -68,15 +75,15 @@ function login() {
     ).innerHTML = `<span class="text-danger">All Inputs are required</span>`;
     return false;
   }
-  if (formateValidation(2) == true) {  // Extra layer of Validation using Regex for signIn Inputs
+  if (formateValidation(2) == true) {
+    // Extra layer of Validation using Regex for signIn Inputs
     if (loginInfoCheck() == true) {
-      
-//This authentication key will expire in 15 mins.
-setSessionStorageWithExpiry();
+      //This authentication key will expire in 15 mins.
+      setSessionStorageWithExpiry();
       location.replace("http://" + location.host + baseURL + "/home.html");
       console.log("http://" + location.host + baseURL + "/home.html");
       document.getElementById("userMessage").innerHTML =
-      "welcome " + localStorage.getItem("userMessage");
+        "welcome " + localStorage.getItem("userMessage");
     } else {
       document.getElementById(
         "incorrectInput"
@@ -119,14 +126,16 @@ function signUp() {
     document.getElementById(
       "signUpState"
     ).innerHTML = `<span class="text-danger">All Inputs are required</span>`;
-    return false
-  } if (signUpInfoCheck() == false) {
+    return false;
+  }
+  if (signUpInfoCheck() == false) {
     document.getElementById(
       "signUpState"
     ).innerHTML = `<span class="text-danger">User E-mail already exist</span>`;
-    return false
+    return false;
   } else {
-    if (formateValidation(1) == true) { // Regex Validation for signUp Inputs
+    if (formateValidation(1) == true) {
+      // Regex Validation for signUp Inputs
       var registrationInfo = {
         name: signUpName.value,
         email: signUpEmail.value,
@@ -145,9 +154,11 @@ function signUp() {
 //End JavaScript code For Sign-Up page
 
 // Start Validation function
-function formateValidation(loginOrSignUp) { // Regex Validation function for both Sign In
-  if (loginOrSignUp == 1) {                 // and Sign Up based on the return value to the
-    var x = signUpName.value;               // function (1 for signUp and 2 for Sign In)
+function formateValidation(loginOrSignUp) {
+  // Regex Validation function for both Sign In
+  if (loginOrSignUp == 1) {
+    // and Sign Up based on the return value to the
+    var x = signUpName.value; // function (1 for signUp and 2 for Sign In)
     var y = signUpEmail.value;
     var z = signUpPassword.value;
     var s = "signUpState";
@@ -210,9 +221,9 @@ function printUserName(index) {
 }
 
 // clearing local Storage user Message (Logout)
-function logout(){
+function logout() {
   localStorage.removeItem("userMessage");
-  sessionStorage.removeItem('AuthenticationState')
+  sessionStorage.removeItem("AuthenticationState");
 }
 
 // Setter Athentication function
@@ -246,4 +257,3 @@ function getFormSessionStorageExpiry(key) {
   }
   return item.value;
 }
-
