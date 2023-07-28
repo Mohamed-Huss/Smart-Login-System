@@ -13,11 +13,27 @@ if (localStorage.getItem("userData")) {
   userData = [];
 }
 
-// Home Page Welcome Message Display
-if (localStorage.getItem("userMessage")){
-document.getElementById("userMessage").innerHTML =
-  "welcome " + localStorage.getItem("userMessage");
+
+// Start URL fetching, Parsing and concatinating
+var pathparts = location.pathname.split("/");
+var baseURL = "";
+for (var i = 1; i < pathparts.length - 1; i++) {
+  baseURL += "/" + pathparts[i];
+  console.log(baseURL)
 }
+// End URL fetching, Parsing and concatinating
+
+// console.log(window.location.href)
+// console.log("http://" + location.host + baseURL + "/home.html")
+
+//Is the user authenticated?
+if (sessionStorage.getItem('AuthenticationState') === null && window.location.href == ("http://" + location.host + baseURL + "/home.html")) {
+window.open("index.html","_self")}
+else if (sessionStorage.getItem('AuthenticationState') ==="Authenticated" && localStorage.getItem("userMessage")) {
+  // Home Page Welcome Message Display
+  document.getElementById("userMessage").innerHTML =
+"welcome " + localStorage.getItem("userMessage");}
+
 //Start Login Case Handling
 
 // Empty Sign In Inputs
@@ -44,16 +60,6 @@ function loginInfoCheck() {
 }
 // End Login Case Handling
 
-// Start URL fetching, Parsing and concatinating
-var pathparts = location.pathname.split("/");
-var baseURL = "";
-for (var i = 1; i < pathparts.length - 1; i++) {
-  baseURL += "/" + pathparts[i];
-  console.log(baseURL)
-}
-
-// End URL fetching, Parsing and concatinating
-
 //Start Login Function
 function login() {
   if (loginInputsEmpty() == false) {
@@ -64,6 +70,13 @@ function login() {
   }
   if (formateValidation(2) == true) {  // Extra layer of Validation using Regex for signIn Inputs
     if (loginInfoCheck() == true) {
+
+//The user has successfully authenticated. We need to store this information
+//for the next page.
+sessionStorage.setItem("AuthenticationState", "Authenticated");               
+//This authentication key will expire in 1 hour.
+// sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));
+
       location.replace("http://" + location.host + baseURL + "/home.html");
       console.log("http://" + location.host + baseURL + "/home.html");
       document.getElementById("userMessage").innerHTML =
@@ -72,7 +85,6 @@ function login() {
       document.getElementById(
         "incorrectInput"
       ).innerHTML = `<span class="text-danger">Incorrect Email or Password</span>`;
-      // return false
     }
   }
 }
@@ -204,4 +216,5 @@ function printUserName(index) {
 // clearing local Storage user Message (Logout)
 function logout(){
   localStorage.removeItem("userMessage");
+  sessionStorage.removeItem('AuthenticationState')
 }
