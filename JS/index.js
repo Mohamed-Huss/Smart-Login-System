@@ -23,13 +23,13 @@ for (var i = 1; i < pathparts.length - 1; i++) {
 }
 // End URL fetching, Parsing and concatinating
 
-console.log(location.protocol + location.host + location.pathname)
-console.log(location.protocol + location.host + baseURL + "/home.html")
+// console.log(location.protocol + location.host + location.pathname)
+// console.log(location.protocol + location.host + baseURL + "/home.html")
 
 //Is the user authenticated?
-if (sessionStorage.getItem('AuthenticationState') === null && (location.protocol + location.host + location.pathname) == (location.protocol + location.host + baseURL + "/home.html")) {
+if (getFormSessionStorageExpiry("AuthenticationState") === null && (location.protocol + location.host + location.pathname) == (location.protocol + location.host + baseURL + "/home.html")) {
 window.open("index.html","_self")}
-else if (sessionStorage.getItem('AuthenticationState') ==="Authenticated" && localStorage.getItem("userMessage")) {
+else if (getFormSessionStorageExpiry("AuthenticationState") ==="Authenticated" && localStorage.getItem("userMessage")) {
   // Home Page Welcome Message Display
   document.getElementById("userMessage").innerHTML =
 "welcome " + localStorage.getItem("userMessage");}
@@ -70,13 +70,9 @@ function login() {
   }
   if (formateValidation(2) == true) {  // Extra layer of Validation using Regex for signIn Inputs
     if (loginInfoCheck() == true) {
-
-//The user has successfully authenticated. We need to store this information
-//for the next page.
-sessionStorage.setItem("AuthenticationState", "Authenticated");               
-//This authentication key will expire in 1 hour.
-// sessionStorage.setItem("AuthenticationExpires", Date.now.addHours(1));
-
+      
+//This authentication key will expire in 15 mins.
+setSessionStorageWithExpiry();
       location.replace("http://" + location.host + baseURL + "/home.html");
       console.log("http://" + location.host + baseURL + "/home.html");
       document.getElementById("userMessage").innerHTML =
@@ -218,3 +214,36 @@ function logout(){
   localStorage.removeItem("userMessage");
   sessionStorage.removeItem('AuthenticationState')
 }
+
+// Setter Athentication function
+function setSessionStorageWithExpiry() {
+  const now = new Date();
+
+  // `item` is an object which contains the original value
+  // as well as the time when it's supposed to expire
+  const item = {
+    value: "Authenticated",
+    expiry: now.getTime() + 900,
+  };
+  sessionStorage.setItem("AuthenticationState", JSON.stringify(item));
+}
+
+// Getter Athentication function
+function getFormSessionStorageExpiry(key) {
+  const itemStr = sessionStorage.getItem(key);
+  // if the item doesn't exist, return null
+  if (!itemStr) {
+    return null;
+  }
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+  // compare the expiry time of the item with the current time
+  if (now.getTime() > item.expiry) {
+    // If the item is expired, delete the item from storage
+    // and return null
+    sessionStorage.removeItem(key);
+    return null;
+  }
+  return item.value;
+}
+
