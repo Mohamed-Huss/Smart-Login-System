@@ -27,7 +27,7 @@ console.log(window.location.href)
 console.log("http://" + location.host + baseURL + "/home.html")
 
 //Is the user authenticated?
-if (sessionStorage.getItem('AuthenticationState') === null && window.location.href == ("http://" + location.host + baseURL + "/home.html")) {
+if (sessionStorage.getItem('AuthenticationState') === null && window.location.href == (("http://" || "https://" ) + location.host + baseURL + "/home.html")) {
 window.open("index.html","_self")}
 else if (sessionStorage.getItem('AuthenticationState') ==="Authenticated" && localStorage.getItem("userMessage")) {
   // Home Page Welcome Message Display
