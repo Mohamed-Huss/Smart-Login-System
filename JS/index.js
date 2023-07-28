@@ -23,11 +23,11 @@ for (var i = 1; i < pathparts.length - 1; i++) {
 }
 // End URL fetching, Parsing and concatinating
 
-console.log(window.location.href)
-console.log("https://" + location.host + baseURL + "/home.html")
+console.log(location.protocol + location.host + location.pathname)
+console.log(location.protocol + location.host + baseURL + "/home.html")
 
 //Is the user authenticated?
-if (sessionStorage.getItem('AuthenticationState') === null && window.location.href == ("https://" + location.host + baseURL + "/home.html")) {
+if (sessionStorage.getItem('AuthenticationState') === null && (location.protocol + location.host + location.pathname) == (location.protocol + location.host + baseURL + "/home.html")) {
 window.open("index.html","_self")}
 else if (sessionStorage.getItem('AuthenticationState') ==="Authenticated" && localStorage.getItem("userMessage")) {
   // Home Page Welcome Message Display
