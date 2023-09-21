@@ -2,8 +2,6 @@
 
 Introducing the `Smart Login System` - Your gateway to a secure and intelligent authentication experience. Designed with the user in mind, it not only provides a secure entry but also ensures data validation, making it one of the smartest choices for login mechanisms.
 
-![Smart Login System Screenshot](path_to_screenshot_or_gif_demo.png)
-
 ## 🌐 **Engage Live**
 
 Why wait? Experience a new wave of smart authentication now. [Step in!](https://mohamed-huss.github.io/Smart-Login-System/)
